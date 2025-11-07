@@ -58,8 +58,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/new_page': (context) => NewRoute(title: '新的页面'),
-        "/": (context) => MyHomePage(title: 'Flutter初始页面'),
+        '/new_page': (context) => const NewRoute(title: '新的页面'),
+        "/": (context) => const MyHomePage(title: 'Flutter初始页面'),
         "tip2": (context) {
           return TipRoute(
               text: (ModalRoute.of(context)!.settings.arguments as String));
@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => RenderObjectDemo()),
+                  MaterialPageRoute(builder: (context) => const RenderObjectDemo()),
                 );
               },
               child: const Text('打开 RenderObject 页面'),
