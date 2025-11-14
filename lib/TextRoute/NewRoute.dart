@@ -47,10 +47,14 @@ class NewRoute extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(MyIcons.QQIcon, color: const Color.fromARGB(255, 52, 165, 235)),
+                        Icon(MyIcons.QQIcon,
+                            color: const Color.fromARGB(255, 52, 165, 235)),
                         Icon(MyIcons.wechat, color: Colors.green),
-                        Icon(MyIcons.DingIcon, color: const Color.fromARGB(255, 24, 187, 199)),
-                        Icon(MyIcons.shenDa, color: const Color.fromARGB(255, 228, 56, 145), size: 100.0),
+                        Icon(MyIcons.DingIcon,
+                            color: const Color.fromARGB(255, 24, 187, 199)),
+                        Icon(MyIcons.shenDa,
+                            color: const Color.fromARGB(255, 228, 56, 145),
+                            size: 100.0),
                       ],
                     ),
                     // Image(
@@ -119,12 +123,14 @@ class NewRoute extends StatelessWidget {
                     ),
                     TextButton.icon(
                         icon: Icon(Icons.info),
-                        onPressed: () => {},
-                        label: Text('文本按钮')),
+                        onPressed: () =>
+                            {Navigator.of(context).pushNamed('textfield_test')},
+                        label: Text('去文本输入框示例页面')),
                     OutlinedButton.icon(
                         icon: Icon(Icons.add),
-                        onPressed: () => {},
-                        label: Text('轮廓按钮')),
+                        onPressed: () =>
+                            {Navigator.of(context).pushNamed('FormTest')},
+                        label: Text('进入From表单学习页面')),
                     IconButton(onPressed: () => {}, icon: Icon(Icons.add))
                   ],
                 ),

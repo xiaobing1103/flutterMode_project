@@ -21,6 +21,7 @@
 // 如果仍有问题，请贴出 gradlew --status、tasklist 输出和错误日志以便进一步诊断。
 
 import 'package:flutter/material.dart';
+import 'package:my_app/Wrap/TestWrap.dart';
 import './TextRoute/NewRoute.dart';
 import './TextRoute/TipRoute.dart';
 import 'StateLifecycleTest.dart';
@@ -31,6 +32,12 @@ import 'TapBoxA.dart';
 import 'parentTapBox/TapBoxb.dart';
 import 'parentTaoBox2/ParentWidgetC.dart';
 import 'model_variant_demo.dart';
+import 'TextField/TextFieldTest.dart';
+import 'Form/FormTest.dart';
+import 'LinearProgressIndicator/TestLine.dart';
+import 'ConstrainedBox/ConstrainedBoxTest.dart';
+import '线性布局/XianXing.dart';
+import 'Flex/OutPut.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,7 +52,7 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(builder: (context) {
           String? routeName = settings.name;
           print(routeName);
-            
+
           // 如果访问的路由页需要登录，但当前未登录，则直接返回登录页路由，
           // 引导用户登录；其他情况则正常打开路由。
           // 默认返回一个空页面，避免返回 null
@@ -59,12 +66,19 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/new_page': (context) => const NewRoute(title: '新的页面'),
+        'TestLine': (context) => const TestLine(),
         "/": (context) => const MyHomePage(title: 'Flutter初始页面'),
         "tip2": (context) {
           return TipRoute(
               text: (ModalRoute.of(context)!.settings.arguments as String));
         },
         'product_variant_demo': (context) => const ProductVariantDemo(),
+        'textfield_test': (context) => Textfieldtest(),
+        'FormTest': (context) => const FormTest(),
+        'ConstrainedBoxTest': (context) => ConstrainedBoxTest(),
+        'XianXing': (context) => XianXing(),
+        'flex_output': (context) => const Output(),
+        'OutPutWarp': (context) => const OutPutWarp(),
       },
       // home: MyHomePage(title: '测试项目'),
     );
@@ -100,12 +114,22 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             MyAnimatedBox(), // 使用自定义的带动画控制器的组件
-            Text('你可以按这个按钮:'),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed('ConstrainedBoxTest');
+              },
+              child: Text('点击进入ConstrainedBox 示例:'),
+            ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            const Echo(text: 'Hello, Echo11!'), // 使用 Echo 组件
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed('OutPutWarp');
+              },
+              child: Echo(text: 'Hello, Echo11!'),
+            ), // 使用 Echo 组件
             // ContextRoute(),
 
             ElevatedButton(
@@ -163,7 +187,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const RenderObjectDemo()),
+                  MaterialPageRoute(
+                      builder: (context) => const RenderObjectDemo()),
                 );
               },
               child: const Text('打开 RenderObject 页面'),
